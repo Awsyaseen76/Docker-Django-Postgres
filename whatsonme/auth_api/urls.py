@@ -1,5 +1,6 @@
 from django.urls import path
-from auth_api import views
+from . import views
 urlpatterns = [
-    path('', views.test),
+    path('auth/all', views.AuthList.as_view()),
+    path('auth/<pk>', views.AuthDetail.as_view()),
 ]

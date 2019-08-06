@@ -40,6 +40,32 @@ the available orders:
 
 
 
+
+# transfor the model data into API
+
+### Using Django Rest Framework:
+ - Serializer: transform the data into JSON
+
+ 1. add the `djangorestframework` to the Pipfile to install it.
+    the problem is the Pipfile will install it but didn't update the Pipfile.lock
+    to solve this but i think it is not the right way:
+        insert this line in Dockerfile to install djangorestframework then the .lock file will be updated
+        `RUN pipenv install djangorestframework`
+ 2. add `rest_framework` to the `INSTALLED_APPS` in settings.py
+ 3. create `serializers.py` file inside the app (auth_api)
+ 4. using Django RESTful Framework generic views instead of custom views and template because it is just API and they are pre-built views
+ 5. update `auth_api/views.py` to include generic views and create list_view and details_view
+ 6. the project's url point to the auth_api path
+ 7. update the app url 
+ 8. add
+
+    
+    1. install rest_framework
+
+
+
+
+
 ## Start from 0
 1. Create environment: terminal
 	`pipenv --python 3.7`

@@ -1,11 +1,12 @@
-from django.shortcuts import render
+from rest_framework import generics
+from .models import Auth
+from .serializers import AuthSerializer
 
-# Create your views here.
-from django.http import HttpResponse
-from auth_api.models import Auth
+class AuthList(generics.ListAPIView): #Its ready template
+   queryset = Auth.objects.all()
+   serializer_class = AuthSerializer
 
 
-def test(request):
-   text = Auth.objects.all()
-   print(text)
-   return HttpResponse(text)
+class AuthDetail(generics.RetrieveAPIView):
+   queryset = Auth.objects.all()
+   serializer_class = AuthSerializer

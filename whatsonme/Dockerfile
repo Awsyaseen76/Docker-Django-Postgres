@@ -11,7 +11,9 @@ WORKDIR /code
 # Install dependencies
 RUN pip install pipenv
 COPY Pipfile Pipfile.lock /code/
+RUN pipenv install djangorestframework
 RUN pipenv install --system
+
 
 # Copy project
 COPY . /code/
