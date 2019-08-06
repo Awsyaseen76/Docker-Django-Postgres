@@ -17,6 +17,27 @@
 
 
 
+# ADD THE MAKE FILE ;)
+if not available on the system:
+`brew install make`
+
+the available orders:
+
+1. `make start`
+    start the container 
+
+2. `make stop`
+    stop the container 
+
+3. `make restart`
+    restart the container
+
+4. `make superuser`
+    create the superuser for the project
+
+5. `make db`
+    connect to the database psql
+
 
 
 ## Start from 0
