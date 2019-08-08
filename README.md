@@ -57,10 +57,24 @@ the available orders:
  5. update `auth_api/views.py` to include generic views and create list_view and details_view
  6. the project's url point to the auth_api path
  7. update the app url 
- 8. add
+ 8. the API supports CRUD
 
-    
-    1. install rest_framework
+
+# Try to add redis
+
+## Use Django built-in auth app
+### Using this app as users
+1. modify the project urls.py file to include 
+    `path('users/', include(django.contrib.auth.urls))`
+2. create template folder and  inside of it registration folder that will including the teplates for the users view urls
+3. the login.html template will include the login template `{{ form.as_p }}`
+4. add the path to the templates folder in the setttings file
+5. add `LOGIN_REDIRECT_URL = '/'` to redirect the success login to
+6. create basic, home pages to login logout and modify the login template that will extend the base page
+7. in the url.py we will use the generic.base template and connect our home page with it
+8. 
+
+
 
 
 

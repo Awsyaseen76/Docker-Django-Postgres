@@ -16,4 +16,5 @@ db:
 	docker-compose up -d db
 	docker-compose exec db psql postgres postgres
 
+
 .PHONY: start stop restart superuser db
