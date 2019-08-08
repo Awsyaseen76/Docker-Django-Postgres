@@ -63,7 +63,8 @@ the available orders:
 # Try to add redis
 
 ## Use Django built-in auth app
-### Using this app as users
+### Using this app as users for login/logout
+- The path will be /users/home, /users/login
 1. modify the project urls.py file to include 
     `path('users/', include(django.contrib.auth.urls))`
 2. create template folder and  inside of it registration folder that will including the teplates for the users view urls
@@ -72,7 +73,23 @@ the available orders:
 5. add `LOGIN_REDIRECT_URL = '/'` to redirect the success login to
 6. create basic, home pages to login logout and modify the login template that will extend the base page
 7. in the url.py we will use the generic.base template and connect our home page with it
-8. 
+
+
+### Using this app as users for register(sign-up)
+- now we need to create view and url so we create an app for that (users)
+1. create a new app (users)
+    `docker-compose exec web /usr/local/bin/python3 manage.py startapp users`
+2. add urls.py to the app
+3. include the app in the settings installed apps
+4. point to the app in the project urls.py
+    add the path above the built in path that created for login/out that it will go the first path appeared (because they have the same path name 'users/')
+5. in the views:    
+    '''
+    Using reverse_lazy instead of reverse? The reason is that for all generic class-based views the urls are not loaded when the file is imported, so we have to use the lazy form of reverse to load them later when they’re available.
+    '''
+6. create the template for signup (signup.html)
+7. to signup go to `http://0.0.0.0:8000/users/signup/`
+
 
 
 

@@ -2,8 +2,8 @@ start:
 	docker-compose up --build -d
 
 stop:
-	docker-compose down
 
+	docker-compose down
 restart: | stop start
 
 superuser: 
@@ -16,5 +16,7 @@ db:
 	docker-compose up -d db
 	docker-compose exec db psql postgres postgres
 
+shell: # Access the Django Shell on the container
+	docker-compose exec web ./manage.py shell
 
-.PHONY: start stop restart superuser db
+.PHONY: start stop restart superuser db shell
