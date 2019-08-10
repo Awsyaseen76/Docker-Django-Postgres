@@ -1,3 +1,67 @@
+## Start from 0
+1. Create environment: terminal
+	`pipenv --python 3.7`
+    `pipenv shell` enter the virtual environment
+2. That will create Pipfile file containing:
+		'''
+            [[source]]
+            name = "pypi"
+            url = "https://pypi.org/simple"
+            verify_ssl = true
+
+            [dev-packages]
+
+            [packages]
+
+            [requires]
+            python_version = "3.7"
+        '''
+3. add django to Pipfile under [requires]:
+    django = "==2.2.0"
+4. `pipenv install` that install the required packaches
+5. Create django project:
+    `django-admin startproject whatsonme`
+6. ???????? not worked until:
+    `pipenv install django`
+7. migrate database the basic:
+    `python manage.py migrate`
+8. run the server:
+    `python manage.py runserver`
+9. Create the app: "auth_app"
+    `python manage.py startapp auth_api`
+    install `psycopg2` for database bindings to PostgreSQL
+
+#####Put the project on Docker:
+10. Change to postgres db:
+11. change the settings to use the postgres:
+    '''
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'postgres',
+            'USER': 'postgres',
+            'HOST': 'db', # will take from docker-compose.yml
+            'PORT': 5432
+        }
+    }
+    '''
+
+....etc
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+
+
+
+
+
 # THE FINAL STEPS TO RUN WHAT WE CREATE:
 1. run the docker file from the directory containes the Dockerfile:
     `docker-compose up --build`
@@ -41,7 +105,7 @@ the available orders:
 
 
 
-# transfor the model data into API
+# Transform the model data into API
 
 ### Using Django Rest Framework:
  - Serializer: transform the data into JSON
@@ -60,7 +124,7 @@ the available orders:
  8. the API supports CRUD
 
 
-# Try to add redis
+<!-- # Try to add redis -->
 
 ## Use Django built-in auth app
 ### Using this app as users for login/logout
@@ -93,58 +157,28 @@ the available orders:
 
 
 
+### Reset Password:
+1. save sent mails to file temporarly (future by mail settings) set `EMAIL_BACKEND` and `EMAIL_FILE_PATH`
+2. the path is `users/password_reset`
+3. create templates:
+    `password_reset_form.html`
+    `password_reset_done.html`
+    `password_reset_confirm.html`
+    `password_reset_complete.html`
+4. put the built in url in the home page:
+    `{% url 'password_reset' %}`
+5. when request restart a file created inside the folder sent_email containing the email that will be sent including the link to reset the password. it works
 
 
 
+## Create custom User based on the built in user 
+### this will improve the ability of authentication with custome user
 
-## Start from 0
-1. Create environment: terminal
-	`pipenv --python 3.7`
-    `pipenv shell` enter the virtual environment
-2. That will create Pipfile file containing:
-		'''
-            [[source]]
-            name = "pypi"
-            url = "https://pypi.org/simple"
-            verify_ssl = true
-
-            [dev-packages]
-
-            [packages]
-
-            [requires]
-            python_version = "3.7"
-        '''
-3. add django to Pipfile under [requires]:
-    django = "==2.2.0"
-4. `pipenv install` that install the required packaches
-5. Create django project:
-    `django-admin startproject whatsonme`
-6. ???????? not worked until:
-    `pipenv install django`
-7. migrate database the basic:
-    `python manage.py migrate`
-8. run the server:
-    `python manage.py runserver`
-9. Create the app: "auth_app"
-    `python manage.py startapp auth_api`
-    install `psycopg2` for database bindings to PostgreSQL
-
-Put the project on Docker:
-10. Change to postgres db:
-11. change the settings to use the postgres:
-    '''
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'postgres',
-            'USER': 'postgres',
-            'HOST': 'db', # will take from docker-compose.yml
-            'PORT': 5432
-        }
-    }
-    '''
-
-
-....etc
+###Cleanup
+1. delete migration files
+2. Drop the database
+3. in the mode create a class `User(AbstractUser)`
+4. change the default user to custome user in settings:
+    `AUTH_USER_MODEL = 'users.User'`
+4. create signup form (SignUpForm) in the app
 

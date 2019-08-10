@@ -25,7 +25,7 @@ SECRET_KEY = '&8+!gga)1z2qkk-!r6apc=dup4m9-3z_btcl&4ban#a3w%9cy9'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0']
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost']
 
 
 # Application definition
@@ -79,9 +79,9 @@ WSGI_APPLICATION = 'whatsonme.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
+        'NAME': 'whatsonme',
+        'USER': 'awsahmed',
+        'PASSWORD': 'ASD123ASD',
         'HOST': 'db',  # set in docker-compose.yml
         'PORT': 5432  # default postgres port
     }
@@ -126,5 +126,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+
+# Change the edfault user:
+AUTH_USER_MODEL = 'users.User'
+
+
 LOGIN_REDIRECT_URL = 'home' #as we named the path in urls.py as 'home'
 LOGOUT_REDIRECT_URL = 'home'
+
+# Temp save sent mail to file
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
