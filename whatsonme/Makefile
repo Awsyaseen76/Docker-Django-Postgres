@@ -1,6 +1,6 @@
 start:
-	docker-compose up --build -d
-	# docker-compose up --build
+	# docker-compose up --build -d
+	docker-compose up --build
 
 stop:
 	docker-compose down
@@ -20,7 +20,7 @@ db:
 shell: # Access the Django Shell on the container
 	docker-compose exec web ./manage.py shell
 
-make_migration:
+make_migrations:
 	docker-compose exec web ./manage.py makemigrations
 
 migrate:

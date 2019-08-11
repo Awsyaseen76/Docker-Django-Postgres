@@ -3,7 +3,7 @@
 	`pipenv --python 3.7`
     `pipenv shell` enter the virtual environment
 2. That will create Pipfile file containing:
-		'''
+		'''s
             [[source]]
             name = "pypi"
             url = "https://pypi.org/simple"
@@ -180,5 +180,18 @@ the available orders:
 3. in the mode create a class `User(AbstractUser)`
 4. change the default user to custome user in settings:
     `AUTH_USER_MODEL = 'users.User'`
-4. create signup form (SignUpForm) in the app
+5. create signup form (SignUpForm) in the app
+6. `make make_migrations`
+7. `make migrate`
+
+
+###Database settings:
+- enter the db with the default username and database on Makefile db:
+    `docker-compose exec db psql template1 postgres`
+- inside the db create username and password:
+    `CREATE USER awsahmed WITH PASSWORD 'ASD123ASD';`
+- give the user privileges:
+    `ALTER USER librarian WITH SUPERUSER;` (also CREATEDB, CREATEROLE)
+- create the database;
+- Ready to connect with the credentials created
 
